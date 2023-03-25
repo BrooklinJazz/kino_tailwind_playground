@@ -1,6 +1,6 @@
 # KinoTailwindPlayground
 
-**A Tailwind Playground you can run inside of Livebook**
+**A Tailwind Playground you can run inside of Livebook.**
 
 ## Installation
 
