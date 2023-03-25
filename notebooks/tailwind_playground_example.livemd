@@ -1,0 +1,9 @@
+# Untitled notebook
+
+```elixir
+Mix.install([
+  {:kino_tailwind_playground, path: "."}
+])
+
+# File.ls!()
+```

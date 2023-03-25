@@ -1,4 +1,4 @@
-defmodule KinoTailwindPlayground do
+defmodule Kino.TailwindPlayground do
   use Kino.JS
   use Kino.JS.Live
   use Kino.SmartCell, name: "Tailwind Playground"
@@ -39,7 +39,7 @@ defmodule KinoTailwindPlayground do
   def to_source(attrs) do
     broadcast_event(attrs["ctx"], "display-html", %{"html" => attrs["html"]})
     # we arent' rendering anything for now.
-    ""
+    "Kino.nothing()"
   end
 
   asset "main.js" do
@@ -68,4 +68,4 @@ defmodule KinoTailwindPlayground do
   end
 end
 
-Kino.SmartCell.register(Kino.SmartCell.Plain)
+Kino.SmartCell.register(Kino.TailwindPlayground)
