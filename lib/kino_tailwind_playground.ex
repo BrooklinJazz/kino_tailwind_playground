@@ -6,40 +6,36 @@ defmodule Kino.TailwindPlayground do
 
   @impl true
   def init(attrs, ctx) do
-    source = attrs["source"] || ""
-
-    {:ok, assign(ctx, source: source),
+    {:ok, assign(ctx, initial_html: attrs["html"]),
      editor: [attribute: "html", language: "html", placement: :top]}
   end
 
   @impl true
   def handle_connect(ctx) do
-    {:ok, %{source: ctx.assigns.source}, ctx}
+    {:ok, %{}, ctx}
   end
 
   @impl true
-  def handle_event("update", %{"source" => source}, ctx) do
-    broadcast_event(ctx, "update", %{"source" => source})
-    Logger.info("handle update event source: #{source}")
-    {:noreply, assign(ctx, source: source)}
-  end
-
-  @impl true
-  def handle_event("button-clicked", _, ctx) do
-    broadcast_event(ctx, "message-received", %{"message" => "Hello from backend"})
+  def handle_event("initial-render", %{}, ctx) do
+    send(self(), {:display_html, ctx.assigns.initial_html})
     {:noreply, ctx}
   end
 
   @impl true
   def to_attrs(ctx) do
-    %{"source" => ctx.assigns.source, "ctx" => ctx}
+    %{}
   end
 
   @impl true
   def to_source(attrs) do
-    broadcast_event(attrs["ctx"], "display-html", %{"html" => attrs["html"]})
-    # we arent' rendering anything for now.
+    # we can't encode ctx in attrs so we send ourselves a message in order to display the html.
+    send(self(), {:display_html, attrs["html"]})
     "Kino.nothing()"
+  end
+
+  def handle_info({:display_html, html}, ctx) do
+    broadcast_event(ctx, "display-html", %{"html" => html})
+    {:noreply, ctx}
   end
 
   asset "main.js" do
@@ -56,6 +52,8 @@ defmodule Kino.TailwindPlayground do
               ${html}
             `
           });
+          console.log(ctx)
+          ctx.pushEvent("initial-render", { });
 
           ctx.handleSync(() => {
             // Synchronously invokes change listeners
@@ -64,7 +62,6 @@ defmodule Kino.TailwindPlayground do
           });
         });
     }
-
     """
   end
 end

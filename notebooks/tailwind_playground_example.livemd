@@ -1,14 +1,19 @@
 # Tailwind Playground
 
 ```elixir
-Mix.install([
-  {:kino_tailwind_playground, path: "."}
-])
+Mix.install(
+  [
+    {:kino_tailwind_playground, path: "."}
+  ],
+  force: true
+)
 ```
 
 ## Example
 
 Install the `Kino.TailwindPlayground` module in the Setup section of your Livebook.
+
+<!-- livebook:{"force_markdown":true} -->
 
 ```elixir
 Mix.install([
@@ -17,3 +22,9 @@ Mix.install([
 ```
 
 Then create a `Tailwind Playground` smart cell and enter some HTML + Tailwind to see the output evaluated live.
+
+<!-- livebook:{"attrs":{"html":"<p class=\"text-4xl\">Tex</p>"},"chunks":null,"kind":"Elixir.Kino.TailwindPlayground","livebook_object":"smart_cell"} -->
+
+```elixir
+Kino.nothing()
+```
