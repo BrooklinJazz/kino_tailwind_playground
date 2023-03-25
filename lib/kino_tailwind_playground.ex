@@ -51,9 +51,10 @@ defmodule Kino.TailwindPlayground do
           "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"
         )
         .then(() => {
-
           ctx.handleEvent("display-html", ({ html }) => {
-            ctx.root.innerHTML = html
+            ctx.root.innerHTML = `
+              ${html}
+            `
           });
 
           ctx.handleSync(() => {
