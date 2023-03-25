@@ -6,7 +6,7 @@ defmodule Kino.TailwindPlayground do
 
   @impl true
   def init(attrs, ctx) do
-    {:ok, assign(ctx, initial_html: attrs["html"]),
+    {:ok, assign(ctx, initial_html: attrs["html"] || ""),
      editor: [attribute: "html", language: "html", placement: :top]}
   end
 
