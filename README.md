@@ -14,4 +14,4 @@ Mix.install([
 
 Then create a `Tailwind Playground` smart cell and enter some HTML + Tailwind to see the output evaluated live.
 
-![Tailwind Playgroudn Example](notesbooks/tailwind_playground_example.png)
+![Tailwind Playground Example](https://github.com/BrooklinJazz/kino_tailwind_playground/blob/main/notebooks/tailwind_playground_example.png)
