@@ -42,17 +42,35 @@ defmodule Kino.TailwindPlayground do
     """
     export function init(ctx, payload) {
       ctx.importCSS("main.css");
+
+      ctx.root.innerHTML = `
+        <div style="width: 100%; height: 100%; border-right: groove; border-color: rgb(176 224 225 / 20%); overflow: hidden; resize: horizontal">
+          <iframe id="iframe" style="width: 100%; border: 0" />
+        </div>
+      `
       ctx
         .importJS(
           "https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"
         )
         .then(() => {
+
+          let iframe = ctx.root.querySelector("#iframe");
+
+          iframe.srcdoc = `
+            <head>
+              <script src='https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp'></script>
+            </head>
+            <body>
+              <div id="wrapper"></div>
+            </body>
+          `
+
           ctx.handleEvent("display-html", ({ html }) => {
-            ctx.root.innerHTML = `
-              ${html}
-            `
+            let wrapper = iframe.contentWindow.document.querySelector("#wrapper");
+            wrapper.innerHTML = html
+            iframe.height = iframe.contentWindow.document.body.scrollHeight;
           });
-          console.log(ctx)
+
           ctx.pushEvent("initial-render", { });
 
           ctx.handleSync(() => {
