@@ -46,18 +46,7 @@ defmodule Kino.TailwindPlayground do
       width: 100%;
       height: 100%;
       overflow-x: auto;
-    }
-
-    #iframe {
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      overflow: auto;
+      background-color: white;
     }
 
     svg {
@@ -65,9 +54,9 @@ defmodule Kino.TailwindPlayground do
     }
 
     .size-btn {
-      color: white; 
-      border-radius: 8px; 
-      border-style: none; 
+      color: white;
+      border-radius: 8px;
+      border-style: none;
       background-color: #33394c;
       width: 28px;
       height: 28px;
@@ -84,18 +73,32 @@ defmodule Kino.TailwindPlayground do
     .button-header {
       padding: 12px;
       background-color: #0f182a;
-      display: flex; 
+      display: flex;
       gap: 8px;
     }
 
+    #iframe {
+      background-color: white;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      overflow: auto;
+    }
+
     #iframe-container {
-      max-width: 100%; 
-      display: block; 
+      max-width: 100%;
+      display: block;
       background-color: #292c34;
       height: 570px;
       resize: vertical;
       overflow: hidden;
       position: relative;
+      padding: 0 5px 5px;
     }
     """
   end
