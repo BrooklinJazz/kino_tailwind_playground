@@ -3,10 +3,12 @@
 ```elixir
 Mix.install(
   [
-    {:kino_tailwind_playground, path: "."}
+    {:kino_tailwind_playground, path: __DIR__ <> "/../"}
   ],
   force: true
 )
+
+__DIR__
 ```
 
 ## Example
